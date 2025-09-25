@@ -13,6 +13,7 @@ services:
       - ./backend/.env
     depends_on:
       - redis
+      - mailhog 
 
   celery:
     build: ./backend
@@ -25,6 +26,8 @@ services:
     depends_on:
       - redis
       - backend
+      - mailhog
+    restart: always 
 
   redis:
     image: redis:7
@@ -41,3 +44,11 @@ services:
       - "5173:5173"
     stdin_open: true
     tty: true
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: cts_mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    restart: always  

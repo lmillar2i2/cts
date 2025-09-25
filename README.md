@@ -22,19 +22,22 @@ Frontend
 Infraestructura
 -Docker + Docker Compose
 -Variables de entorno con .env
+-MailHog (captura correos de prueba en interfaz web) //Se optó agregarlo para facilitar la revisión orevia solo por consola
 
 ***Instrucciones de instalación***
 1-Clonar el repositorio:
 git clone https://github.com/lmillar2i2/cts.git
+cd cts
 
 2-Levantar servicios con Docker:
 docker-compose up --build
 
 Al ejecutar se inicia:
-Backend en http://localhost:8000
+Backend en http://localhost:8000/admin (Admin de django)
 Frontend en http://localhost:5173
 Redis (cola de tareas)
 Celery Worker
+MailHog (SMTP y bandeja web) → http://localhost:8025
 
 3-Crear superusuario para el panel admin de Django:
 docker exec -it cts_backend python manage.py createsuperuser
@@ -44,11 +47,17 @@ DEBUG=True
 SECRET_KEY=supersecret
 ALLOWED_HOSTS=127.0.0.1,localhost
 CORS_ALLOWED_ORIGINS=http://localhost:5173
+CSRF_TRUSTED_ORIGINS=http://localhost:5173
+TIME_ZONE=America/Santiago
 
+**Celery y Redis
 CELERY_BROKER_URL=redis://redis:6379/0
 CELERY_RESULT_BACKEND=redis://redis:6379/0
 
-EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
+**Email
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST=mailhog
+EMAIL_PORT=1025
 DEFAULT_FROM_EMAIL=no-reply@cts-turismo.cl
 
 
@@ -82,16 +91,15 @@ Verificación: GET /api/verify/<token>/
 Crear contraseña: POST /api/set-password/
 Login admin: POST /api/admin/login/
 Listar participantes: GET /api/admin/participants/ (JWT requerido)
-Sortear ganador: POST /api/admin/draw/ (JWT requerido)
-Retorna participante ganador y envía correo.
+Sortear ganador: POST /api/admin/draw/ (JWT requerido, retorna participante ganador y envía correo)
 
 
 ***Decisiones técnicas***
 SQLite: elegido por simplicidad en esta prueba; fácilmente reemplazable por PostgreSQL.
 Pinia: manejo de estado global más moderno y recomendado que Vuex.
 Bootstrap: usado para estilos rápidos y estándar; en producción se podría optar por TailwindCSS.
-Docker Compose: entrega consistente de backend, frontend, Celery y Redis.
-Correos: backend configurado con console.EmailBackend para debug; en producción se reemplazaría por SMTP real.
+Docker Compose: entrega consistente de backend, frontend, Celery, Redis y MailHog.
+Correos: En este entorno se capturan en MailHog (http://localhost:8025). En producción se usaría SMTP real.
 
 ***Tests***
 Incluye un test de registro en participants/tests.py:
@@ -99,3 +107,6 @@ Incluye un test de registro en participants/tests.py:
 -Registro con email duplicado
 Ejecución de tests:
 -docker exec -it cts_backend python manage.py test
+
+***Video Demo***  
+Disponible en YouTube: https://youtu.be/TwTsxkuHnoA

@@ -140,9 +140,13 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=["http://localhost:5173"])
 
 
-# Email (para la prueba: consola)
+# Email (para la prueba por consola)
 EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="no-reply@cts-turismo.cl")
+#Mejora para probar con mailhog
+EMAIL_HOST = env("EMAIL_HOST", default="mailhog") #
+EMAIL_PORT = env.int("EMAIL_PORT", default=1025)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

@@ -7,9 +7,10 @@ class ParticipantCreateSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(validators=[]) #Se quita el validador de unicidad del DRF para manejar el error de duplicado en la vista
     phone = serializers.RegexField( #Se agrega validador de formato simple 
         regex=r'^\+569\d{8}$',
-        required=False,
-        allow_blank=True,
+        required=True,
         error_messages={
+            "required": "El teléfono es obligatorio.",
+            "blank": "Debes ingresar tu número de teléfono.",
             "invalid": "El número debe tener el formato +569XXXXXXXX"
         }
     )
