@@ -52,10 +52,7 @@ Al ejecutar se inicia:
 docker exec -it cts_backend python manage.py createsuperuser
 
 
-
-
 ### 4. Variables de entorno en `backend/.env`
-```env
 DEBUG=True
 SECRET_KEY=supersecret
 ALLOWED_HOSTS=127.0.0.1,localhost
