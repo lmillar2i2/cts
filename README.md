@@ -50,9 +50,11 @@ Al ejecutar se inicia:
 ### 3. Crear superusuario para el panel admin de Django
 ```bash
 docker exec -it cts_backend python manage.py createsuperuser
+```
 
 
 ### 4. Variables de entorno en `backend/.env`
+```env
 DEBUG=True
 SECRET_KEY=supersecret
 ALLOWED_HOSTS=127.0.0.1,localhost
@@ -69,7 +71,7 @@ EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
 EMAIL_HOST=mailhog
 EMAIL_PORT=1025
 DEFAULT_FROM_EMAIL=no-reply@cts-turismo.cl
-
+```
 
 ## Flujo del concurso
 
