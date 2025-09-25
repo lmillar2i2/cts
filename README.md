@@ -25,7 +25,7 @@ Infraestructura
 
 ***Instrucciones de instalación***
 1-Clonar el repositorio:
-git clone https://github.com/usuario/prueba_cts.git
+git clone https://github.com/lmillar2i2/cts.git
 
 2-Levantar servicios con Docker:
 docker-compose up --build
