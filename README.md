@@ -112,11 +112,11 @@ DEFAULT_FROM_EMAIL=no-reply@cts-turismo.cl
 
 ## Decisiones técnicas
 
-- **SQLite**: elegido por simplicidad en esta prueba; fácilmente reemplazable por PostgreSQL.  
-- **Pinia**: manejo de estado global más moderno y recomendado que Vuex.  
-- **Bootstrap**: usado para estilos rápidos y estándar; en producción se podría optar por TailwindCSS.  
-- **Docker Compose**: entrega consistente de backend, frontend, Celery, Redis y MailHog.  
-- **Correos**: en este entorno se capturan en [MailHog](http://localhost:8025). En producción se usaría SMTP real.  
+- **SQLite**: Elegido por simplicidad en esta prueba; fácilmente reemplazable por PostgreSQL.  
+- **Pinia**: Manejo de estado global más moderno y recomendado que Vuex.  
+- **Bootstrap**: Usado para estilos rápidos y estándar; en producción se podría optar por TailwindCSS.  
+- **Docker Compose**: Entrega más consistente de backend, frontend, Celery, Redis y MailHog.  
+- **Correos**: En este entorno se capturan en [MailHog](http://localhost:8025). En producción se usaría SMTP real.  
 
 
 ## Tests
@@ -128,7 +128,7 @@ Incluye un test de registro en `participants/tests.py`:
 **Ejecución de tests:**
 ```bash
 docker exec -it cts_backend python manage.py test
-
+```
 
 ## Video Demo
 Disponible en YouTube: [https://youtu.be/TwTsxkuHnoA](https://youtu.be/TwTsxkuHnoA)
