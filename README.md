@@ -36,7 +36,7 @@ Backend con Django + DRF + Celery/Redis y frontend con Vue 3 + Vite + Pinia.
    cd cts
 
 
-2. **Levantar servicios con Docker**
+2. **Levantar servicios con Docker** (Prerrequisitos: Docker y Docker Compose instalados)
     ```bash
     docker-compose up --build
 
