@@ -36,7 +36,7 @@ Backend con Django + DRF + Celery/Redis y frontend con Vue 3 + Vite + Pinia.
    cd cts
 
 
-2) **Levantar servicios con Docker**
+2. **Levantar servicios con Docker**
     ```bash
     docker-compose up --build
 
@@ -50,6 +50,9 @@ Al ejecutar se inicia:
 ### 3. Crear superusuario para el panel admin de Django
 ```bash
 docker exec -it cts_backend python manage.py createsuperuser
+
+
+
 
 ### 4. Variables de entorno en `backend/.env`
 ```env
