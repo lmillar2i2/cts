@@ -127,12 +127,12 @@ REST_FRAMEWORK = {
     ),
     # Permiso por defecto abierto; cerraremos en endpoints admin.
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
-    # (Opcional) Throttling básico
-    # "DEFAULT_THROTTLE_CLASSES": [
-    #   "rest_framework.throttling.AnonRateThrottle",
-    #   "rest_framework.throttling.UserRateThrottle",
-    # ],
-    # "DEFAULT_THROTTLE_RATES": {"anon": "50/min", "user": "100/min"},
+    # Throttling básico para proteger endpoints públicos
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle", #Usuarios no autenticados
+        "rest_framework.throttling.UserRateThrottle", #Usuarios autenticados con JWT
+    ],
+     "DEFAULT_THROTTLE_RATES": {"anon": "50/min", "user": "100/min"},
 }
 # CORS
 CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=["http://localhost:5173"])

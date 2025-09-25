@@ -109,6 +109,18 @@ DEFAULT_FROM_EMAIL=no-reply@cts-turismo.cl
 - **Listar participantes**: `GET /api/admin/participants/` (JWT requerido)  
 - **Sortear ganador**: `POST /api/admin/draw/` (JWT requerido, retorna participante ganador y envía correo)  
 
+## Seguridad y buenas prácticas
+
+La aplicación implementa actualmente las siguientes medidas de seguridad:
+
+- **Contraseñas encriptadas**: Las contraseñas de participantes se almacenan con `make_password` de Django.  
+- **Protección de rutas sensibles**: Endpoints administrativos protegidos con **JWT**.  
+- **Validación de duplicados**: No se permite registrar un mismo correo electrónico más de una vez.  
+- **Validaciones de formato**: Email y teléfono se validan en el backend.  
+- **CSRF y CORS**: Configurados para restringir accesos al frontend permitido.  
+- **Variables de entorno**: Uso de `.env` para mantener llaves y configuración sensible fuera del repositorio.  
+- **Correos asíncronos**: Uso de Celery/Redis para no bloquear la aplicación al enviar emails.
+- **Rate limiting (throttling)**: Se implementó con DRF para limitar peticiones masivas a endpoints públicos y prevenir ataques de fuerza bruta.  
 
 ## Decisiones técnicas
 
