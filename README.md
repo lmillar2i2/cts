@@ -1,4 +1,4 @@
-# Prueba Técnica - CTS Turismo
+# Aplicación Full Stack para gestionar sorteo y envío de correo asíncrono
 
 Aplicación Full Stack para gestionar un sorteo de San Valentín.  
 Backend con Django + DRF + Celery/Redis y frontend con Vue 3 + Vite + Pinia.
